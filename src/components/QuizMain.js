@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './QuizMain.css';
 import Question from './question/Question';
 import Answer from './answer/Answer';
 
@@ -37,7 +36,20 @@ export class QuizMain extends Component {
             }
             response = response.results
             response.forEach(function(value, key) {
-                value.question = value.question.replace(/(&quot)/g,"\"")
+                console.log(value.incorrect_answers);
+                function escapeHtml(unsafe) {
+                    return unsafe
+                         .replace(/&amp;/g, "&")
+                         .replace(/&lt;/g, "<")
+                         .replace(/&gt;/g, ">")
+                         .replace(/&quot;/g, '"')
+                         .replace(/&#039;/g, "'");
+                 }
+                value.question = escapeHtml(value.question);
+                value.correct_answer = escapeHtml(value.correct_answer);
+                value.incorrect_answers = value.incorrect_answers.map(function (value, label) {
+                    return escapeHtml(value);
+                });
                 temp.questions[key+1] = value.question;
                 temp.correctAnswers[key+1] = value.correct_answer;
                 value.incorrect_answers.push(value.correct_answer);
@@ -79,6 +91,9 @@ export class QuizMain extends Component {
     nextQuestion = step => {
         this.setState({ step: step + 1, clickedAnswer: 0, correctAnswer: 0 })
     }
+    refreshPage = () => {
+        window.location.reload(false);
+      }
     render() {
         let { questions, step, answers, clickedAnswer, correctAnswer, score } = this.state;
         return (
@@ -109,6 +124,8 @@ export class QuizMain extends Component {
                                     <h1>You have completed the quiz !</h1>
                                     <p>Your score is: {score} of {Object.keys(questions).length}</p>
                                     <p>Thank You</p>
+                                    <button onClick={() => this.refreshPage()}
+                                    className="NextStep" >Play Again</button>
                                 </div>
                             )}
                 </div>
