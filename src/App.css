@@ -1,0 +1,62 @@
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(30px + 2vmin);
+  color: red;
+  font-weight: bolder;
+  text-align: center;
+  padding: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body{
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+}
+.answer{
+  padding-left: 20%;
+}
+.Content{
+  display: table;
+  width: 60%;
+  -ms-text-combine-horizontal: 0 auto;
+  padding: 40px 40px;
+  background-color: wheat;
+}
+
+.Content h1{
+  margin: 15px 0;
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  color: #da0f0d;
+  text-transform: capitalize;
+  text-shadow: white;
+  text-align: left;
+}
+
+.NextStep{
+  background-color: #009e00;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.NextStep:hover{
+  background-color: green;
+}
+.NextStep[disabled]{
+  display : none;
+}
+
+.finalPage h1{
+  text-align: center;
+  margin: 15px 0;
+  font-size: 25px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
+  color: #008416;
+  text-transform: none;
+  text-shadow: none;
+}
