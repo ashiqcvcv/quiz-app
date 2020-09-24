@@ -36,7 +36,6 @@ export class QuizMain extends Component {
             }
             response = response.results
             response.forEach(function(value, key) {
-                console.log(value.incorrect_answers);
                 function escapeHtml(unsafe) {
                     return unsafe
                          .replace(/&amp;/g, "&")
