@@ -1,18 +1,24 @@
 .Answers{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    justify-content: left;
+    position: relative;
+  perspective: 40em;
+  display: grid;
+  transform-style: preserve-3d;
 }
 .Answers li{
     padding: 10px;
     border-left: 4px solid orange;
     background-color: papayawhip;
     margin: 0 0 5px;
+    max-width: 90%;
 }
 .Answers li:hover{
     cursor: pointer;
     background-color: peru;
+}
+.Answers .incorrect,
+.Answers .incorrect:hover{
+    background-color: orangered;
+    border-left: 4px solid red;
 }
 .Answers .correct,
 .Answers .correct:hover{
@@ -20,12 +26,20 @@
     border-left: 4px solid orange;
     color: darkblue;
 }
-.Answers .incorrect,
-.Answers .incorrect:hover{
-    background-color: orangered;
-    border-left: 4px solid red;
-}
 .Answers[disabled]{
     pointer-events: none;
     opacity : 0.7;
+}
+
+.count{
+    color: slateblue;
+    padding: 5px;
+    font-size: large;
+    font-weight: bold;
+}
+.score{
+    color: steelblue;
+    padding: 5px;
+    font-size: larger;
+    font-weight: bold;
 }

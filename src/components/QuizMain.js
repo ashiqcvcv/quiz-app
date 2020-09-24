@@ -21,7 +21,8 @@ export class QuizMain extends Component {
         correctAnswer: false,
         clickedAnswer: false,
         step: 1,
-        score: 0
+        score: 0,
+        correctAnswerValue: ''
     }
 
     componentDidMount(){
@@ -78,12 +79,14 @@ export class QuizMain extends Component {
             this.setState({
                 score: score + 1,
                 correctAnswer: true,
-                clickedAnswer: index
+                clickedAnswer: index,
+                correctAnswerValue: correctAnswers[step]
             })
         } else {
             this.setState({
                 correctAnswer: false,
-                clickedAnswer: index
+                clickedAnswer: index,
+                correctAnswerValue: correctAnswers[step]
             })
         }
     }
@@ -94,15 +97,15 @@ export class QuizMain extends Component {
         window.location.reload(false);
       }
     render() {
-        let { questions, step, answers, clickedAnswer, correctAnswer, score } = this.state;
+        let { questions, step, answers, clickedAnswer, correctAnswer, score, correctAnswerValue } = this.state;
         return (
             <div className='answer'>
                 <div className="Content">
                     {
                         step <= Object.keys(questions).length ?
                             (<div>
-                                <h1><span>{step} of 10 questions</span></h1>
-                                <h1>Score : <span>{score}</span></h1>
+                                <h1><span className="count">{step} of 10 questions</span></h1>
+                                <span className='score'>Score : <span>{score}</span></span>
                                 <Question
                                     question={questions[step]}
                                 />
@@ -112,6 +115,7 @@ export class QuizMain extends Component {
                                     checkAnswer={this.checkAnswer}
                                     correctAnswer={correctAnswer}
                                     clickedAnswer={clickedAnswer}
+                                    correctAnswerValue = {correctAnswerValue}
                                 />
                                 <button onClick={() => this.nextQuestion(this.state.step)}
                                     className="NextStep" disabled={
